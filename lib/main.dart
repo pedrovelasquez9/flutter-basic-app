@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "./views/home.dart";
+import 'package:programacion_esp/layout/CustomScaffold.dart';
 
 void main() => runApp(MaterialApp(
-      home: Home(),
+      home: CustomScaffold(),
     ));
