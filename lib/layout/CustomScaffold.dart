@@ -11,6 +11,8 @@ class CustomScaffold extends StatelessWidget {
           backgroundColor: Color.fromRGBO(56, 182, 255, 1.0),
           elevation: 0.0,
         ),
-        body: Home());
+        body: SingleChildScrollView(
+          child: Home(),
+        ));
   }
 }
