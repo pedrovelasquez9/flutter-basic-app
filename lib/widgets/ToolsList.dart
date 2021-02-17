@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:programacion_esp/widgets/CustomCard.dart';
-import 'package:programacion_esp/widgets/CustomText.dart';
 import 'package:programacion_esp/models/Tools.dart';
 
 class ToolsList extends StatefulWidget {
