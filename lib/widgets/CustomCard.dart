@@ -37,7 +37,7 @@ class CustomCard extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/details");
+                      Navigator.pushNamed(context, "/details", arguments: {"techName": tool.name});
                     })
               ],
             ),

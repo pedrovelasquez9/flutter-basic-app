@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:programacion_esp/api/HttpHelpers.dart';
 import 'package:programacion_esp/widgets/CustomText.dart';
 import 'package:programacion_esp/widgets/CustomTitle.dart';
+import 'package:programacion_esp/layout/CustomLoading.dart';
 
 class Details extends StatefulWidget {
   @override
@@ -9,7 +10,9 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  String techData = "Loading";
+  String techData = "";
+  bool loading = true;
+  Map routeData = {};
   HttpHelpers apiHelper = new HttpHelpers();
 
   Future getDetails() async {
@@ -19,6 +22,7 @@ class _DetailsState extends State<Details> {
     if (this.mounted) {
       setState(() {
         techData = data['body'];
+        loading = false;
       });
     }
   }
@@ -32,16 +36,21 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomTitle('Tech Name'),
-          SizedBox(height: 10.0),
-          CustomText('$techData'),
-        ],
-      ),
-    );
+    setState(() {
+      routeData = ModalRoute.of(context).settings.arguments;
+    });
+    return loading
+        ? CustomLoading()
+        : Padding(
+            padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomTitle(routeData['techName']),
+                SizedBox(height: 10.0),
+                CustomText('$techData'),
+              ],
+            ),
+          );
   }
 }
